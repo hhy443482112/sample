@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\User;
 
+use Auth;
+
 class UsersController extends Controller
 {
     /**
@@ -97,8 +99,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+        session()->flash('success', '您已成功退出！');
+        return redirect('login');
     }
 }
