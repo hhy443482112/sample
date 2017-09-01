@@ -25,8 +25,13 @@ textarea
   text-align: center;
 }
 
+.alert-status
+{
+  @extend .alert-info;
+}
+
 /* typography */
-// 活版
+//  活版
 
 h1, h2, h3, h4, h5, h6
 {
@@ -58,7 +63,7 @@ p
 }
 
 /* header */
-// 页头
+//  页头
 
 .navbar-inverse
 {
@@ -81,8 +86,17 @@ p
   }
 }
 
+#logout
+{
+  cursor: default;
+  &:hover
+  {
+    background-color: transparent;
+  }
+}
+
 /* footer */
-// 页脚
+//  页脚
 
 footer
 {
@@ -131,8 +145,8 @@ footer
   }
 }
 
-/* siderbar */
-// 侧边栏
+/* sidebar */
+//  侧边栏
 
 aside
 {
@@ -181,8 +195,66 @@ section.user_info
   border-radius: 50%;
 }
 
+.stats
+{
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a
+  {
+    float: left;
+    padding: 0 10px;
+    text-align: center;
+    width: 33%;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child
+    {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover
+    {
+      text-decoration: none;
+      color: #337ab7;
+    }
+  }
+  strong
+  {
+    display: block;
+    font-size: 1.2em;
+    color: black;
+  }
+}
+
+.user_avatars
+{
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar
+  {
+    margin: 1px 1px;
+  }
+  a
+  {
+    padding: 0;
+  }
+}
+
+.users.follow
+{
+  padding: 0;
+}
+
 /* forms */
 //  表格
+
+#follow_form button
+{
+  margin: 0 auto;
+  display: block;
+  margin-top: 25px;
+}
 
 input, textarea, select, .uneditable-input
 {
@@ -199,4 +271,107 @@ input
 .panel
 {
   margin-top: 50px;
+}
+
+/* Users edit */
+//  用户编辑
+
+.gravatar_edit
+{
+  margin: 15px auto;
+  text-align: center;
+  .gravatar
+  {
+    float: none;
+    max-width: 100px;
+  }
+}
+
+/* Users index */
+//  用户列表
+
+.users
+{
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  li
+  {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+.delete-btn
+{
+  float: right;
+  position: relative;
+  right: 0;
+}
+
+/* statuses */
+//  状态
+
+.statuses
+{
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  li
+  {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+    position: relative;
+  }
+  .user
+  {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content
+  {
+    display: block;
+    margin-left: 60px;
+    word-break: break-word;
+    img
+    {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp
+  {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar
+  {
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+  form
+  {
+    button.status-delete-btn
+    {
+      position: absolute;
+      right: 0;
+      top: 10px;
+    }
+  }
+}
+
+aside
+{
+  textarea
+  {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+.status_form
+{
+  margin-top: 20px;
 }
