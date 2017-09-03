@@ -11,6 +11,13 @@ use Auth;
 
 class SessionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,9 +44,33 @@ class SessionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $this->validate($request, [
+    //        'email' => 'required|email|max:255',
+    //        'password' => 'required'
+    //    ]);
+
+    //    $credentials = [
+    //        'email'    => $request->email,
+    //        'password' => $request->password,
+    //    ];
+
+    //    if (Auth::attempt($credentials, $request->has('remember')))
+    //    {
+    //        session()->flash('success', '欢迎回来！');
+    //        return redirect()->route('users.show', [Auth::user()]);
+    //    }
+    //    else
+    //    {
+    //        session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
+    //        return redirect()->back();
+    //    }
+    // }
+
     public function store(Request $request)
     {
-        $this->validate($request, [
+       $this->validate($request, [
            'email' => 'required|email|max:255',
            'password' => 'required'
        ]);
@@ -49,13 +80,10 @@ class SessionsController extends Controller
            'password' => $request->password,
        ];
 
-       if (Auth::attempt($credentials, $request->has('remember')))
-       {
+       if (Auth::attempt($credentials, $request->has('remember'))) {
            session()->flash('success', '欢迎回来！');
-           return redirect()->route('users.show', [Auth::user()]);
-       }
-       else
-       {
+           return redirect()->intended(route('users.show', [Auth::user()]));
+       } else {
            session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
            return redirect()->back();
        }
